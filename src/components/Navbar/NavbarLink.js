@@ -1,8 +1,15 @@
+// @flow
+
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import styles from "./Navbar.styles";
 
-class NavbarLink extends Component {
+type Props = {
+  title: string,
+  active: boolean
+};
+
+class NavbarLink extends Component<Props> {
   render() {
     const { title, active, ...props } = this.props;
     return (

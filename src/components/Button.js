@@ -1,9 +1,25 @@
+// @flow
 import React from "react";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    height: 64,
+    borderRadius: 32,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  buttonPrimaryContainer: {
+    borderWidth: 4
+  },
   textContainer: {
     position: "relative"
+  },
+  textRegular: {
+    fontSize: 18
+  },
+  textPrimary: {
+    fontSize: 24
   },
   textShadow: {
     fontFamily: "GothamPro-Black",
@@ -15,39 +31,49 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "GothamPro-Black",
-    textAlign: "center"
+    textAlign: "center",
+    letterSpacing: 1.3
   }
 });
+
+type Props = {
+  color: string,
+  onPress: Function,
+  children: React.ReactNode,
+  primary: boolean,
+  style: StyleSheet.Styles,
+  disabled: boolean
+};
 
 const Button = ({
   color,
   onPress,
   children,
   primary,
-  width,
   style,
   disabled
-}) => (
+}: Props) => (
   <TouchableOpacity onPress={onPress} style={style} disabled={disabled}>
     <View
       style={[
-        {
-          height: 64,
-          borderWidth: primary ? 4 : 0,
-          borderColor: color,
-          borderRadius: 32,
-          alignItems: "center",
-          justifyContent: "center"
-        }
+        styles.buttonContainer,
+        primary ? styles.buttonPrimaryContainer : null,
+        { borderColor: color }
       ]}
     >
       <View style={styles.textContainer}>
         {primary && (
-          <Text style={[styles.textShadow, { fontSize: primary ? 24 : 18 }]}>
+          <Text style={[styles.textShadow, styles.textPrimary]}>
             {children}
           </Text>
         )}
-        <Text style={[styles.text, { fontSize: primary ? 24 : 18, color }]}>
+        <Text
+          style={[
+            styles.text,
+            primary ? styles.textPrimary : styles.textRegular,
+            { color }
+          ]}
+        >
           {children}
         </Text>
       </View>
