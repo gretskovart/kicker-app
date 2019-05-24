@@ -84,7 +84,7 @@ const Player = observer(
     };
 
     openUserList = () => {
-      this.setState({ userListVisible: true });
+      // this.setState({ userListVisible: true });
     };
 
     addGoal = async () => {

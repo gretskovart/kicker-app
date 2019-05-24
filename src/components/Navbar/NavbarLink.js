@@ -18,7 +18,6 @@ class NavbarLink extends Component<Props> {
           <Text style={[styles.linkText, active ? styles.linkActive : null]}>
             {title}
           </Text>
-          {active && <View style={styles.undeline} />}
         </View>
       </TouchableOpacity>
     );

@@ -19,10 +19,26 @@ import Score from "./Score";
 import styles from "./Game.styles";
 
 const initialState = {
-  player1: null,
-  player2: null,
-  player3: null,
-  player4: null,
+  player1: {
+    team: TEAM_RED,
+    position: POSITION_DEFENDER,
+    user: store.users[0]
+  },
+  player2: {
+    team: TEAM_RED,
+    position: POSITION_FORWARD,
+    user: store.users[1]
+  },
+  player3: {
+    team: TEAM_BLUE,
+    position: POSITION_FORWARD,
+    user: store.users[2]
+  },
+  player4: {
+    team: TEAM_BLUE,
+    position: POSITION_DEFENDER,
+    user: store.users[3]
+  },
   finishModalVisible: false
 };
 
@@ -31,10 +47,6 @@ const Game = observer(
     constructor() {
       super();
       this.state = initialState;
-    }
-
-    componentDidMount() {
-      store.loadUsers();
     }
 
     get areAllPlayersSelected() {
@@ -168,19 +180,21 @@ const Game = observer(
           <Gateway into="navbar">
             {gameStore.game ? (
               <Navbar>
-                <NavbarLink onPress={this.undoGoal} title="UNDO GOAL" />
+                <NavbarLink active onPress={this.undoGoal} title="UNDO GOAL" />
                 <View style={styles.navbarLogoContainer}>
                   <Logo />
                 </View>
                 <NavbarLink
+                  active
                   onPress={this.confirmFinishGame}
                   title="RESET GAME"
                 />
               </Navbar>
             ) : (
               <Navbar>
-                <NavbarLink title="GAME" active />
-                <NavbarLink title="LEADERS" />
+                <View style={styles.navbarLogoContainer}>
+                  <Logo />
+                </View>
               </Navbar>
             )}
           </Gateway>

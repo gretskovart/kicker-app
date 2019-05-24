@@ -27,7 +27,28 @@ const GameStore = types
 
 const Store = types
   .model({
-    users: types.optional(types.array(User), []),
+    users: types.optional(types.array(User), [
+      {
+        id: 1,
+        name: "CMYK Defender",
+        photoUrl: require("../assets/CMYK.png")
+      },
+      {
+        id: 2,
+        name: "CMYK Forward",
+        photoUrl: require("../assets/CMYK.png")
+      },
+      {
+        id: 3,
+        name: "RGB Forward",
+        photoUrl: require("../assets/RGB.png")
+      },
+      {
+        id: 4,
+        name: "RGB Defender",
+        photoUrl: require("../assets/RGB.png")
+      }
+    ]),
     games: types.optional(types.array(Game), []),
     gameStore: GameStore
   })

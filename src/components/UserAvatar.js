@@ -6,7 +6,7 @@ const UserAvatar = ({ user, size, team, ...rest }) => (
   <View style={{ borderRadius: size / 2, overflow: "hidden" }}>
     {user.photoUrl ? (
       <Image
-        source={{ uri: user.photoUrl }}
+        source={user.photoUrl}
         style={{ width: size, height: size }}
         {...rest}
       />
